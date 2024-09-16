@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita - Meme Token</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --pink: #FF69B4;
+            --yellow: #FFD700;
+            --blue: #1E90FF;
+            --white: #FFFFFF;
+            --black: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--pink);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--pink), var(--blue));
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            color: var(--yellow);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--pink);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        .section-separator {
+            height: 2px;
+            background: linear-gradient(to right, var(--pink), var(--yellow), var(--blue));
+            margin: 80px 0;
+        }
+
+        .about, .tokenomics, .how-to-buy, .roadmap {
+            padding: 80px 0;
+        }
+
+        h2 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            color: var(--yellow);
+            text-align: center;
+        }
+
+        .about-content, .tokenomics-content, .how-to-buy-content, .roadmap-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text, .tokenomics-text, .how-to-buy-text, .roadmap-text {
+            flex: 1;
+        }
+
+        .about-image, .tokenomics-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img, .tokenomics-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        ul li::before {
+            content: '★';
+            color: var(--yellow);
+            margin-right: 10px;
+        }
+
+        .step {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step h3 {
+            color: var(--yellow);
+            margin-bottom: 10px;
+        }
+
+        .roadmap-phase {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .roadmap-phase:hover {
+            transform: translateY(-5px);
+        }
+
+        .roadmap-phase h3 {
+            color: var(--yellow);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .token-address {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copy-icon {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .copy-icon:hover {
+            color: var(--yellow);
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--yellow);
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); }
+            50% { transform: scale(1) rotate(180deg); }
+            100% { transform: scale(0) rotate(360deg); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .slide-in {
+            animation: slideIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Berita</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#tokenomics">Tokenomics</a>
+                <a href="#how-to-buy">How to Buy</a>
+                <a href="#roadmap">Roadmap</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="pulse">Berita</h1>
+                <p class="fade-in">The Celebrity Glamour Meme Token</p>
+                <a href="#how-to-buy" class="cta-button">Get Your BRTA Now!</a>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About Berita</h2>
+                <div class="about-content">
+                    <div class="about-text slide-in">
+                        <p>Berita is the meme coin that brings celebrity glamour straight to your crypto wallet! Combining the charm of your favorite celebs with the humor of the internet, Berita is a must-have in the trend of celebrity-themed tokens.</p>
+                        <p>Join our vibrant community and add a sparkle to your portfolio with Berita, where every transaction feels like a red-carpet event!</p>
+                    </div>
+                    <div class="about-image floating">
+                        <img src="https://placeholder.com/400x400" alt="Berita Token Mascot">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <section id="tokenomics" class="tokenomics">
+            <div class="container">
+                <h2>TOKENOMICS</h2>
+                <div class="tokenomics-content">
+                    <div class="tokenomics-text slide-in">
+                        <ul>
+                            <li>Total Supply: 1,000,000,000,000 BRTA</li>
+                            <li>Liquidity Lock: 2 years</li>
+                            <li>3% Transaction Fee: 1% to holders, 1% to liquidity, 1% to marketing</li>
+                            <li>Max Wallet: 2% of total supply</li>
+                        </ul>
+                    </div>
+                    <div class="tokenomics-image floating">
+                        <img src="https://placeholder.com/400x400" alt="Berita logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <section id="how-to-buy" class="how-to-buy">
+            <div class="container">
+                <h2>HOW TO BUY</h2>
+                <div class="how-to-buy-content">
+                    <div class="how-to-buy-text">
+                        <div class="step fade-in">
+                            <h3>Step 1: Get a Wallet</h3>
+                            <p>Download a reputable Ethereum wallet like MetaMask or Trust Wallet.</p>
+                        </div>
+                        <div class="step fade-in">
+                            <h3>Step 2: Acquire ETH</h3>
+                            <p>Purchase Ethereum (ETH) from a cryptocurrency exchange like Coinbase or Binance.</p>
+                        </div>
+                        <div class="step fade-in">
+                            <h3>Step 3: Connect to a DEX</h3>
+                            <p>Connect your wallet to a decentralized exchange (DEX) like Uniswap or SushiSwap.</p>
+                        </div>
+                        <div class="step fade-in">
+                            <h3>Step 4: Swap ETH for BRTA</h3>
+                            <p>Use the DEX's swap feature to exchange your ETH for BRTA.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <section id="roadmap" class="roadmap">
+            <div class="container">
+                <h2>ROADMAP</h2>
+                <div class="roadmap-content">
+                    <div class="roadmap-text">
+                        <div class="roadmap-phase fade-in">
+                            <h3>Phase 1: Launch & Community Building</h3>
+                            <p>We'll launch the token and focus on growing a strong community of celebrity enthusiasts and meme lovers.</p>
+                        </div>
+                        <div class="roadmap-phase fade-in">
+                            <h3>Phase 2: Marketing & Partnerships</h3>
+                            <p>We'll ramp up marketing efforts and form strategic partnerships with influencers and celebrity-focused platforms.</p>
+                        </div>
+                        <div class="roadmap-phase fade-in">
+                            <h3>Phase 3: Product Development</h3>
+                            <p>We'll develop new features and utilities for the token, including exclusive celebrity content and NFT collections.</p>
+                        </div>
+                        <div class="roadmap-phase fade-in">
+                            <h3>Phase 4: Expansion & Beyond</h3>
+                            <p>We'll explore new opportunities to integrate Berita into the entertainment industry and expand the token's reach globally.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="token-address">
+                    <span>0x1234...5678</span>
+                    <i class="fas fa-copy copy-icon"></i>
+                </div>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fas fa-chart-line"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="#" target="_blank"><i class="fas fa-search-dollar"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sparkle effect
+        document.addEventListener('mousemove', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.
